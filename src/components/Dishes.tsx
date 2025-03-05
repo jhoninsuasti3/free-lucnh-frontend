@@ -1,4 +1,3 @@
-import React from "react";
 
 const dishes = [
   { name: "Grilled Chicken", image: "/src/assets/grilled-chicken.jpg" },

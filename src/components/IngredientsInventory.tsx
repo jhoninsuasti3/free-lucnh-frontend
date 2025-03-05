@@ -1,4 +1,3 @@
-import React from "react";
 
 const ingredients = [
   "Tomato", "Lemon", "Potato", "Rice", "Ketchup",

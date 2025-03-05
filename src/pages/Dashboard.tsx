@@ -1,5 +1,4 @@
 // src/pages/Dashboard.tsx
-import React from "react";
 import OrderButton from "../components/OrderButton";
 import OrderHistory from "../components/OrderHistory";
 import Dishes from "../components/Dishes";

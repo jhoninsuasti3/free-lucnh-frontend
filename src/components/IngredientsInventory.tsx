@@ -10,7 +10,7 @@ const IngredientsInventory = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://8oxe6sxwj4.execute-api.us-east-1.amazonaws.com/prod/ingredients")
+    fetch("https://83y77mqbrl.execute-api.us-east-1.amazonaws.com/prod/ingredients")
       .then((response) => response.json())
       .then((data: Ingredient[]) => {  // ⬅️ Asegurar que TypeScript sepa el tipo de datos
         setIngredients(data);

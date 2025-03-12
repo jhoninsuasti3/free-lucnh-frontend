@@ -29,9 +29,9 @@ const Dishes = () => {
   }
 
   return (
-    <div className="bg-white p-6 shadow-md rounded-lg absolute bottom-[3%] right-0 w-2/3 h-[30%] overflow-y-auto">
+    <div className="bg-white p-6 shadow-md rounded-lg mt-6">
       <h2 className="text-lg font-bold mb-4">Available Recipes</h2>
-      <ul className="grid grid-cols-3 gap-2 h-full">
+      <ul className="grid grid-cols-3 gap-2">
         {recipes.map((recipe) => (
           <li key={recipe.recipeId} className="p-2 bg-gray-100 rounded-md text-center">
             <img src={recipe.image} alt={recipe.name} className="w-32 h-20 object-cover rounded-md mb-2" />
@@ -40,7 +40,7 @@ const Dishes = () => {
         ))}
       </ul>
     </div>
-  );
+  );  
 };
 
 export { Dishes };

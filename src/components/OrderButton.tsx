@@ -1,10 +1,14 @@
 import { useState } from "react";
 
-const OrderButton = ({ onOrderCreated }: { onOrderCreated: () => void }) => {
+const OrderButton = () => {
+  const [orderId, setOrderId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const placeOrder = async () => {
     setLoading(true);
+    setError(null);
+
     try {
       const response = await fetch("https://8oxe6sxwj4.execute-api.us-east-1.amazonaws.com/prod/order", {
         method: "POST",
@@ -18,28 +22,45 @@ const OrderButton = ({ onOrderCreated }: { onOrderCreated: () => void }) => {
       }
 
       const data = await response.json();
-      if (data.status === "pending") {
-        alert("✅ Order successfully created!");
-        onOrderCreated(); // 🔄 Notificar a `OrderHistory` que hay una nueva orden
-      } else {
-        alert("⚠️ Order created but not in pending state.");
-      }
-    } catch (error) {
-      console.error("❌ Error creating order:", error);
-      alert("Failed to create order. Try again.");
+      setOrderId(data.orderId); // Guardar el orderId en el estado
+    } catch (err) {
+      setError("Failed to place order. Please try again.");
+      console.error("Error creating order:", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <button
-      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md"
-      onClick={placeOrder}
-      disabled={loading}
-    >
-      {loading ? "Ordering..." : "Order Random Dish"}
-    </button>
+    <div className="relative">
+      <button
+        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md"
+        onClick={placeOrder}
+        disabled={loading}
+      >
+        {loading ? "Ordering..." : "Order Random Dish"}
+      </button>
+
+      {/* MODAL MEJORADO: FONDO TRANSPARENTE Y BLUR MÁS SUAVE */}
+      {orderId && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-10 backdrop-blur-md">
+          <div className="bg-white p-10 rounded-lg shadow-lg border border-gray-300 w-1/3 text-center">
+            <h2 className="text-xl font-bold mb-4">✅ Order Created Successfully!</h2>
+            <p className="text-gray-700">Your Order ID:</p>
+            <p className="text-blue-600 font-bold text-lg">{orderId}</p>
+            <button
+              className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg w-full"
+              onClick={() => setOrderId(null)}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* MENSAJE DE ERROR */}
+      {error && <p className="text-red-600 mt-2">{error}</p>}
+    </div>
   );
 };
 

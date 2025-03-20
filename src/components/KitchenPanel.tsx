@@ -7,9 +7,9 @@ const KitchenPanel = () => {
   const [activeTab, setActiveTab] = useState("preparations");
 
   return (
-    <div className="bg-white p-6 shadow-md rounded-lg h-[60vh] flex flex-col">
-      <h2 className="text-lg font-bold mb-4">Kitchen Management</h2>
-      
+    <div className="bg-white p-6 shadow-md rounded-lg h-[60vh] overflow-hidden">
+    <h2 className="text-lg font-bold mb-4">Kitchen Management</h2>
+          
       {/* Botones de navegación */}
       <div className="flex space-x-4 mb-4">
         <button 

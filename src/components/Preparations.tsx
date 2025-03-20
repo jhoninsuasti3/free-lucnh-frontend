@@ -95,7 +95,7 @@ const Preparations = () => {
                 {/* STATUS con colores */}
                 <p className="font-bold">
                   Status: 
-                  <span className={`ml-2 px-2 py-1 rounded-md text-white ${order.status === "pending" ? "bg-yellow-500" : order.status === "finalizada" ? "bg-green-500" : "bg-red-500"}`}>
+                  <span className={`ml-2 px-2  rounded-md text-white ${order.status === "pending" ? "bg-yellow-500" : order.status === "finalizada" ? "bg-green-500" : "bg-red-500"}`}>
                     {order.status}
                   </span>
                 </p>
